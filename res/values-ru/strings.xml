@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Английская фонетика</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="grade01">Уровень1</string>
+    <string name="grade02">Уровень 2</string>
+    <string name="grade03">Уровень 3</string>
+    <string name="grade04">Уровень 4</string>
+    <string name="grade05">Уровень 5</string>
+    <string name="grade06">Уровень 6</string>
+    <string name="grade07">Уровень 7</string>
+    <string name="grade08">Уровень 8</string>
+    <string name="ok">ОК</string>
+    <string name="play">Воспроизведение</string>
+    <string name="record">Запись</string>
+</resources>
