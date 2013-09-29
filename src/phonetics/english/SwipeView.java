@@ -96,7 +96,10 @@ public class SwipeView extends PagerAdapter {
 							break;
 						}else{
 							String[] parts = line.split(";");
-
+							if(parts.length == 1){
+								// something wrong with our csv file
+								continue;
+							}
 							// relative layout
 							RelativeLayout relLayout = new RelativeLayout(ctx);
 							RelativeLayout.LayoutParams layoutHorizontalParams = new RelativeLayout.LayoutParams(
