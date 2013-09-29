@@ -1018,4 +1018,3 @@ North America;[ˌnɔːθə'merɪkə];Северная Америка;
 South America;[saʊθə'merɪkə];Южная Америка;
 Russia;['rʌʃə];Россия;
 archaeologist;[ˌɑːkɪ'ɔləʤɪst];археолог;
-

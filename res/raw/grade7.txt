@@ -79,7 +79,7 @@ accompanying;[ə'kʌmpənɪɪŋ];препроводительный;
 qualifying;['kwɔlɪfaɪɪŋ];квалификационный;
 gratitude;['grætɪt(j)uːd];благодарность, признательность;
 Lesson 4
-mathematics;[ˌmæθ(ə)'mætɪks];математика, расчёт;
+mathematics;[ˌmæθ(ə)'mætɪks];математика;
 memory;['mem(ə)rɪ];память, воспоминание;
 penitentiary;[ˌpenɪ'tenʃ(ə)rɪ];исправительный дом;
 recognize;['rekəgnaɪz];узнавать, опознавать;
