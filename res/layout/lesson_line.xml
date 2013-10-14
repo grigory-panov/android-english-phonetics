@@ -12,33 +12,13 @@
              android:layout_width="fill_parent"
              android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="4dp"
-            android:paddingRight="10dp"
-            android:text="test"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imageButton1"
-            android:layout_toRightOf="@+id/textView2"
-            android:gravity="center_vertical"
-            android:text="test 21323 1232 rewr ewrewr wer retret ertert ertert ertret ertretwe werrew 2" />
-
            <ImageButton
                android:id="@+id/imageButton1"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_centerVertical="true"
                android:layout_toLeftOf="@+id/imageButton2"
-               android:padding="12dp"
+               android:padding="8dp"
                android:src="@drawable/play" />
             
             <ImageButton
@@ -47,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@+id/imageButton3"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:src="@drawable/rec" />
 
             <ImageButton
@@ -56,8 +36,52 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:padding="12dp"
+                android:padding="8dp"
                 android:src="@drawable/play" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageButton1"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentTop="true"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="10dp"
+                        android:text="test"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@id/textView2"
+                        android:gravity="center_vertical"
+                        android:text="[testfsef&apos;]" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="test 21323 1232 rewr ewrewr wer retret  e" />
+
+            </LinearLayout>
 
         </RelativeLayout>
 

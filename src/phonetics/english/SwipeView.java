@@ -65,7 +65,7 @@ public class SwipeView extends PagerAdapter {
 		int resId = getResourceIdByName("grade" + grade);
 		InputStream is = ctx.getResources().openRawResource(resId);
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
-		int padding = 10;
+		int padding = 8;
 		ScrollView scrollView = new ScrollView(ctx);
         ScrollView.LayoutParams scrollViewParams = new ScrollView.LayoutParams(
         		LinearLayout.LayoutParams.MATCH_PARENT, 
@@ -101,29 +101,12 @@ public class SwipeView extends PagerAdapter {
 								continue;
 							}
 							// relative layout
-							RelativeLayout relLayout = new RelativeLayout(ctx);
+							RelativeLayout relLayoutParent = new RelativeLayout(ctx);
 							RelativeLayout.LayoutParams layoutHorizontalParams = new RelativeLayout.LayoutParams(
 									RelativeLayout.LayoutParams.MATCH_PARENT, 
 									RelativeLayout.LayoutParams.WRAP_CONTENT);
-                            relLayout.setLayoutParams(layoutHorizontalParams);
-
-                            // text
-							TextView label = new TextView(ctx);
-							label.setText(parts[0]);
-							label.setPadding(padding/4, 2, 2, padding/4);
-							label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-							label.setId(viewId++);
+							relLayoutParent.setLayoutParams(layoutHorizontalParams);
 							
-							//tect 2
-							TextView label2 = new TextView(ctx);
-							if(parts.length == 3){
-								label2.setText(parts[1]+ " " + parts[2]);
-							}else{
-								label2.setText(parts[1]);
-							}
-							label2.setId(viewId++);
-							label2.setPadding(padding, 0, padding/2, 0);
-
 							// play buttom
 							ImageButton playButton = new ImageButton(ctx);
 							playButton.setImageResource(R.drawable.play);
@@ -146,42 +129,96 @@ public class SwipeView extends PagerAdapter {
 							playRecorderButton.setOnClickListener(new PlayRecorderSound());
 							playRecorderButton.setPadding(padding, padding, padding, padding);
 							playRecorderButton.setId(viewId++);
+							
+							TextView labelWord = new TextView(ctx);
+							labelWord.setText(parts[0]);
+							labelWord.setPadding(2, 2, padding, 2);
+							labelWord.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+							labelWord.setId(viewId++);
+							
+							TextView labelTranscription = new TextView(ctx);
+							labelTranscription.setText(parts[1]);
+							labelTranscription.setId(viewId++);
+							labelTranscription.setPadding(0, 2, 2, 2);
+							
+							TextView labelTranslation = new TextView(ctx);
+							if(parts.length > 2){
+								labelTranslation.setText(parts[2]);
+							}else{
+								labelTranslation.setText("TODO: translation");
+							}
+							labelTranslation.setId(viewId++);
+							
+		                    // layout for upper part (word and transcrioption)
+		                    RelativeLayout relLayoutGroup = new RelativeLayout(ctx);
+							RelativeLayout.LayoutParams relLayoutGroupParams = new RelativeLayout.LayoutParams(
+									RelativeLayout.LayoutParams.MATCH_PARENT, 
+									RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+							relLayoutGroup.setLayoutParams(relLayoutGroupParams);
+							
+							// layout for all text on line
+							LinearLayout groupText = new LinearLayout(ctx);
+		                    LinearLayout.LayoutParams groupTextParams = new LinearLayout.LayoutParams(
+		                    		LinearLayout.LayoutParams.WRAP_CONTENT, 
+		                    		LinearLayout.LayoutParams.WRAP_CONTENT);
+		                    
+		                    groupText.setLayoutParams(groupTextParams);
+		                    groupText.setOrientation(LinearLayout.VERTICAL);
+
+		                    groupText.addView(relLayoutGroup);
+		                    
+		                    // params for word
+		                    RelativeLayout.LayoutParams wordParams = new RelativeLayout.LayoutParams(
+									RelativeLayout.LayoutParams.WRAP_CONTENT, 
+									RelativeLayout.LayoutParams.WRAP_CONTENT);
+		                    wordParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		                    wordParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+		                    relLayoutGroup.addView(labelWord, wordParams);
+		                    
+		                    RelativeLayout.LayoutParams transcriptionParams = new RelativeLayout.LayoutParams(
+									RelativeLayout.LayoutParams.WRAP_CONTENT, 
+									RelativeLayout.LayoutParams.WRAP_CONTENT);
+		                    transcriptionParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+		                    transcriptionParams.addRule(RelativeLayout.RIGHT_OF, labelWord.getId());
+		                    relLayoutGroup.addView(labelTranscription, transcriptionParams);
+		                    
+		                    
+							
+		                    groupText.addView(labelTranslation);
+		                    
+							RelativeLayout.LayoutParams linearLayputParams = new RelativeLayout.LayoutParams(
+									RelativeLayout.LayoutParams.WRAP_CONTENT, 
+									RelativeLayout.LayoutParams.WRAP_CONTENT);
+							linearLayputParams.addRule(RelativeLayout.CENTER_VERTICAL);
+							linearLayputParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+							linearLayputParams.addRule(RelativeLayout.LEFT_OF, playButton.getId());
+							relLayoutParent.addView(groupText, linearLayputParams);
+
+							
 							RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(
 									RelativeLayout.LayoutParams.WRAP_CONTENT, 
 									RelativeLayout.LayoutParams.WRAP_CONTENT);
 							p.addRule(RelativeLayout.CENTER_VERTICAL);
-							relLayout.addView(label, p);
-
-							p = new RelativeLayout.LayoutParams(
-									RelativeLayout.LayoutParams.WRAP_CONTENT, 
-									RelativeLayout.LayoutParams.WRAP_CONTENT);
-							p.addRule(RelativeLayout.CENTER_VERTICAL);
-							p.addRule(RelativeLayout.RIGHT_OF, label.getId());
-							p.addRule(RelativeLayout.LEFT_OF, playButton.getId());
-							relLayout.addView(label2, p);
-							
-							p = new RelativeLayout.LayoutParams(
-									RelativeLayout.LayoutParams.WRAP_CONTENT, 
-									RelativeLayout.LayoutParams.WRAP_CONTENT);
-							p.addRule(RelativeLayout.CENTER_VERTICAL);
 							p.addRule(RelativeLayout.LEFT_OF, recButton.getId());
-							relLayout.addView(playButton, p);
+							relLayoutParent.addView(playButton, p);
 							
 							p = new RelativeLayout.LayoutParams(
 									RelativeLayout.LayoutParams.WRAP_CONTENT, 
 									RelativeLayout.LayoutParams.WRAP_CONTENT);
 							p.addRule(RelativeLayout.CENTER_VERTICAL);
 							p.addRule(RelativeLayout.LEFT_OF, playRecorderButton.getId());
-							relLayout.addView(recButton, p);
+							relLayoutParent.addView(recButton, p);
 							
 							p = new RelativeLayout.LayoutParams(
 									RelativeLayout.LayoutParams.WRAP_CONTENT, 
 									RelativeLayout.LayoutParams.WRAP_CONTENT);
 							p.addRule(RelativeLayout.CENTER_VERTICAL);
 							p.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-							relLayout.addView(playRecorderButton, p);
-							lessonView.addView(relLayout);
+							relLayoutParent.addView(playRecorderButton, p);
+							
+							
+							lessonView.addView(relLayoutParent);
 							
 							
 						}
